@@ -1,0 +1,146 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorGdLuck</item>
+        <item name="colorPrimaryDark">@color/colorDBlue</item>
+        <item name="colorAccent">@color/colorGdness</item>
+        <item name="android:textColorPrimary">@color/colorGdLuck</item>
+        <item name="android:actionBarStyle">@style/MM_actionBar</item>
+        <item name="actionBarStyle">@style/MM_actionBar</item>
+        <item name="android:actionBarTabStyle">@style/MM_ActionBarTitle</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MM_actionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:background" tools:ignore="NewApi">@color/colorDBlue</item>
+        <item name="background">@color/colorDBlue</item>
+
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textColorPrimary">@color/colorGdLuck</item>
+
+        <item name="android:popupBackground">@color/colorDBlue</item>
+        <item name="android:dropDownSelector">@color/colorGdNight</item>
+
+        <item name="android:titleTextStyle" tools:ignore="NewApi">@style/MM_ActionBarTitle</item>
+        <item name="titleTextStyle">@style/MM_ActionBarTitle</item>
+
+        <item name="android:actionMenuTextColor" tools:ignore="NewApi">@color/colorGdLuck</item>
+        <item name="actionMenuTextColor">@color/colorGdLuck</item>
+
+        <item name="actionBarItemBackground">@color/colorDBlue</item>
+        <item name="selectableItemBackground">@color/colorDBlue</item>
+    </style>
+
+    <style name="MM_ActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="MM_ActionBarTxt" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textColor">@color/colorGdLuck</item>
+    </style>
+
+    <style name="MM_ActionBar_btn">
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+
+    </style>
+
+    <style name="MM_layout">
+        <item name="android:padding">@dimen/menu_margin</item>
+        <item name="android:background">@color/colorDBlue</item>
+    </style>
+
+    <style name="MM_gameBoardlayout">
+        <item name="android:background">@color/colorDBlue</item>
+    </style>
+
+
+    <style name="MM_menu_title">
+        <item name="android:textSize">@dimen/menu_title_txt</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">@color/colorGdLuck</item>
+    </style>
+
+    <style name="MM_title">
+        <item name="android:textSize">@dimen/title_txt</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">@color/colorGdLuck</item>
+    </style>
+
+    <style name="MM_menu_btn">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/menu_btn_txt</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textColor">@color/colorDBlue</item>
+    </style>
+
+    <style name="MM_gameBoard" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/colorGdness</item>
+        <item name="android:actionMenuTextColor">@color/colorGdLuck</item>
+    </style>
+
+
+    <style name="MM_gameTimer" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MM_gameAttemptTxt" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MM_gameBorder" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+
+    <style name="MM_gameSettingTxt">
+        <item name="android:background">@color/colorDBlue</item>
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="MM_gamePinTxt">
+        <item name="android:textColor">@color/colorGdLuck</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="MM_gameBtn">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/colorDBlue</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+    <style name="MM_gameDialogTitleTxt">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/colorDBlue</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="MM_color_palette">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+</resources>

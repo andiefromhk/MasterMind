@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_palette_9"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_margin="1dp"
+    android:background="@drawable/border_blue">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/color_901"
+            android:background="@drawable/pin01"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_902"
+            android:background="@drawable/pin02"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_903"
+            android:background="@drawable/pin03"
+            style="@style/MM_color_palette"
+            />
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+        <Button
+            android:id="@+id/color_904"
+            android:background="@drawable/pin04"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_905"
+            android:background="@drawable/pin05"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_906"
+            android:background="@drawable/pin06"
+            style="@style/MM_color_palette"
+            />
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/color_907"
+            android:background="@drawable/pin07"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_908"
+            android:background="@drawable/pin08"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_909"
+            android:background="@drawable/pin09"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+</LinearLayout>

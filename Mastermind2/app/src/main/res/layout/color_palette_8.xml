@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_palette_8"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_margin="1dp"
+    android:background="@drawable/border_blue">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/color_801"
+            android:background="@drawable/pin01"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_802"
+            android:background="@drawable/pin02"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_803"
+            android:background="@drawable/pin03"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_804"
+            android:background="@drawable/pin04"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/color_805"
+            android:background="@drawable/pin05"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_806"
+            android:background="@drawable/pin06"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_807"
+            android:background="@drawable/pin07"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_808"
+            android:background="@drawable/pin08"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+</LinearLayout>

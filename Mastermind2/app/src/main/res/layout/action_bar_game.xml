@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorDBlue"
+    android:paddingLeft="10dp"
+    android:paddingRight="5dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/app_name"
+        android:gravity="left"
+        android:layout_gravity="center_vertical"
+        style="@style/MM_ActionBarTitle"/>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal" android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="4"
+            android:layout_margin="3dp"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
+            <Button
+                android:id="@+id/action_bar_home_game"
+                android:background="@drawable/ic_home"
+                style="@style/MM_ActionBar_btn" />
+            <Button
+                android:id="@+id/action_bar_help_game"
+                android:background="@drawable/ic_help"
+                style="@style/MM_ActionBar_btn" />
+            <Button
+                android:id="@+id/action_bar_giveup"
+                android:background="@drawable/ic_giveup"
+                style="@style/MM_ActionBar_btn" />
+</LinearLayout>
+</LinearLayout>

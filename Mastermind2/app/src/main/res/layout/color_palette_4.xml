@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_palette_4"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_margin="1dp"
+    android:background="@drawable/border_blue">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/color_401"
+            android:background="@drawable/pin01"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_402"
+            android:background="@drawable/pin02"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/color_403"
+            android:background="@drawable/pin03"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_404"
+            android:background="@drawable/pin04"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+</LinearLayout>

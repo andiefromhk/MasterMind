@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="menu_margin">16dp</dimen>
+    <dimen name="menu_title_txt">48dp</dimen>
+    <dimen name="title_txt">36dp</dimen>
+    <dimen name="menu_btn_txt">24dp</dimen>
+</resources>

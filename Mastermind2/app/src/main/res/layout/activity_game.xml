@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MM_gameBoardlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.example.andie.mastermind.Activity.GameActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+<LinearLayout
+    android:id="@+id/top_bar"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="1.5dp"
+            android:background="@drawable/border_yl"
+            style="@style/MM_gameBorder">
+    <TextView
+        android:id="@+id/gTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="00:00"
+        style="@style/MM_gameTimer"/>
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="5"
+        android:layout_marginLeft="1.5dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/border_blue"
+        style="@style/MM_gameBorder">
+        <TextView
+            android:id="@+id/gAttemptRemain"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text=""
+            style="@style/MM_gameAttemptTxt"/>
+        </LinearLayout>
+</LinearLayout>
+
+    <ListView
+        android:id="@+id/pAttemptDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:layout_above="@+id/bottom_bar"
+        android:transcriptMode="alwaysScroll"
+        android:stackFromBottom="true"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <Button
+            android:id="@+id/btn_play_pause"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="2"
+            android:background="@drawable/btn_bg_red"
+            android:title="Play/Pause"
+            style="@style/MM_gameBtn"/>
+
+        <LinearLayout
+            android:id="@+id/guess_panel"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:orientation="horizontal"
+            android:layout_weight="6"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/border_blue"
+            android:padding="1dp"
+            style="@style/MM_gameBorder">
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_guess"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="2"
+            android:title="Guess"
+            android:text="Guess"
+            android:background="@drawable/btn_bg_green"
+            style="@style/MM_gameBtn">
+        </Button>
+
+    </LinearLayout>
+</RelativeLayout>
+</LinearLayout>

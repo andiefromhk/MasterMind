@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_color_guess_6"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="6">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:gravity="center_horizontal"
+        >
+        <Button
+            android:id="@+id/guess_601"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+        <Button
+            android:id="@+id/guess_602"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+        <Button
+            android:id="@+id/guess_603"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+        <Button
+            android:id="@+id/guess_604"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+        <Button
+            android:id="@+id/guess_605"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+        <Button
+            android:id="@+id/guess_606"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/pin00"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_palette_7"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_margin="1dp"
+    android:background="@drawable/border_blue">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/color_701"
+            android:background="@drawable/pin01"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_702"
+            android:background="@drawable/pin02"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_703"
+            android:background="@drawable/pin03"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_704"
+            android:background="@drawable/pin04"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/color_705"
+            android:background="@drawable/pin05"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_706"
+            android:background="@drawable/pin06"
+            style="@style/MM_color_palette"
+            />
+        <Button
+            android:id="@+id/color_707"
+            android:background="@drawable/pin07"
+            style="@style/MM_color_palette"
+            />
+    </LinearLayout>
+</LinearLayout>

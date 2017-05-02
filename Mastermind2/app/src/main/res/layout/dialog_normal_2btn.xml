@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_green">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dialog_title_green">
+        <TextView
+            android:id="@+id/dialog_normal_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/MM_gameDialogTitleTxt"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/dialog_normal_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Answer"
+            style="@style/MM_gameSettingTxt"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_dialog_normal_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:title="OK"
+                android:text="OK"
+                android:background="@drawable/btn_bg_yl"
+                style="@style/MM_gameBtn"/>
+            <Button
+                android:id="@+id/btn_dialog_normal_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:title="Cancel"
+                android:text="Cancel"
+                android:background="@drawable/btn_bg_yl"
+                style="@style/MM_gameBtn"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

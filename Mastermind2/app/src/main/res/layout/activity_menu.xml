@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MM_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.example.andie.mastermind2017.Activity.MenuActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MM_menu_title"
+        android:text="@string/app_name"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/start_btn"
+            style="@style/MM_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/start_game"
+            android:background="@color/colorGdness"
+            />
+
+        <Button
+            style="@style/MM_menu_btn"
+            android:id="@+id/rank_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/record"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorGdGuy"
+            />
+
+        <Button
+            style="@style/MM_menu_btn"
+            android:id="@+id/set_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/settings"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorGdNight"
+            />
+    </LinearLayout>
+</LinearLayout>

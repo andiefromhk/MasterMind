@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorGr">#C4F2C8</color>
+    <color name="colorOr">#F2D8CB</color>
+    <color name="colorBl">#C5E2E3</color>
+    <color name="colorYl">#FCFFD9</color>
+    <color name="colorPk">#FFCCCC</color>
+    <color name="colorPl">#e6e6fa</color>
+
+    <color name="colorLOr">#ffbd57</color>
+    <color name="colorBLav">#98abcc</color>
+    <color name="colorLLav">#c7a8d8</color>
+    <color name="colorLBl">#a4d5e7</color>
+    <color name="colorLGr">#a5dbab</color>
+    <color name="colorLav">#66669d</color>
+    <color name="colorGdLuck">#7DC098</color>
+    <color name="colorGdNight">#749396</color>
+    <color name="colorDBlue">#24324F</color>
+    <color name="colorGdGuy">#E88085</color>
+    <color name="colorGdness">#E8CA93</color>
+
+    <color name="colorIceMtn1">#123336</color>
+    <color name="colorIceMtn2">#5ea5a0</color>
+    <color name="colorIceMtn3">#a2dbdd</color>
+    <color name="colorIceMtn4">#895345</color>
+    <color name="colorIceMtn5">#4b382d</color>
+
+</resources>
