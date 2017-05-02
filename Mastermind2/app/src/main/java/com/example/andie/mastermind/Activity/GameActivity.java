@@ -202,12 +202,12 @@ public class GameActivity extends BaseActivity{
         String numAttempt = "Number of Attempt: "+ mmc.currentAttempt();
         showDialog("Bingo",
                 timeSpent + "\n" + numAttempt +"\n" +
-                        "Click OK to reset the game.", ansDialogHandler, true);
+                        "Click OK to reset the game.", ansDialogHandler);
     }
 
     private void showGameLoseDialog() {
         pauseGame();
-        showDialog("You Lose", "Click OK to reset the game.", ansDialogHandler, true);
+        showDialog("You Lose", "Click OK to reset the game.", ansDialogHandler);
     }
 
     private void startGame() {
@@ -256,7 +256,7 @@ public class GameActivity extends BaseActivity{
 
                 case R.id.action_bar_home_game:
                     pauseGame();
-                    showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler, false);
+                    showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler);
                     break;
                 case R.id.action_bar_help_game:
                     if (mmc.gameRunningNotPaused())
@@ -267,7 +267,7 @@ public class GameActivity extends BaseActivity{
                 case R.id.action_bar_giveup:
                     if (mmc.gameRunningNotPaused()) {
                         pauseGame();
-                        showDialog("Are you sure you give up?", "Click OK to see the answer.", giveUpHandler, false);
+                        showDialog("Are you sure you give up?", "Click OK to see the answer.", giveUpHandler);
                     }
                     break;
 
@@ -283,16 +283,17 @@ public class GameActivity extends BaseActivity{
         startActivity(i);
     }
 
-    private void showDialog(String title, String msg, MMHandler handler, boolean showAns){
+    private void showDialog(String title, String msg, MMHandler handler){
         FragmentTransaction ft = getFragmentTransaction();
 
         DialogFragment dialogFragment;
-        if (!showAns)
-            dialogFragment = MMDialogFragment.getNewInstance(title, msg, (MMDialogHandler) handler);
-        else
+        if (handler instanceof MMAnsDialogHandler) {
             dialogFragment = MMAnsDialogFragment.getNewInstance(mmc.currentAns(), title, msg, (MMAnsDialogHandler) handler);
-
-        dialogFragment.setCancelable(false);
+            dialogFragment.setCancelable(false);
+        }else {
+            dialogFragment = MMDialogFragment.getNewInstance(title, msg, (MMDialogHandler) handler);
+            dialogFragment.setCancelable(true);
+        }
         dialogFragment.show(ft, "dialog");
     }
 
@@ -330,7 +331,7 @@ public class GameActivity extends BaseActivity{
     MMDialogHandler giveUpHandler = new MMDialogHandler() {
         @Override
         public void MMDialogClickOk() {
-            showDialog("You gave up", "Click OK to reset the game.", ansDialogHandler, true);
+            showDialog("You gave up", "Click OK to reset the game.", ansDialogHandler);
         }
 
         @Override
@@ -346,7 +347,7 @@ public class GameActivity extends BaseActivity{
             if (mmc.gameRunningNotPaused())
                 pauseGame();
 
-            showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler, false);
+            showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler);
             return true;
         }
         return super.onKeyDown(keyCode, event);

@@ -1,6 +1,7 @@
 package com.example.andie.mastermind.Fragment;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -28,6 +29,12 @@ public class MMDialogFragment extends DialogFragment {
 
         frag.setArguments(args);
         return frag;
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog){
+        if (handler != null)
+            handler.MMDialogClickCancel();
     }
 
     @Override
