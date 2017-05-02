@@ -207,17 +207,7 @@ public class GameActivity extends BaseActivity{
 
     private void showGameLoseDialog() {
         pauseGame();
-        new AlertDialog.Builder(GameActivity.this)
-                .setTitle("You Lose")
-                .setMessage("Click Ok to reset the game")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        endGame();
-                        initGameInterface();
-                    }
-                })
-                .show();
+        showDialog("You Lose", "Click OK to reset the game.", ansDialogHandler, true);
     }
 
     private void startGame() {
