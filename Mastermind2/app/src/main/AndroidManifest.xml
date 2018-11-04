@@ -26,8 +26,8 @@
             android:launchMode="singleTask"/>
         <activity android:name=".Activity.SettingActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".Activity.BaseNonGameActivity" />
-        <activity android:name=".Activity.BaseGameActivity" />
+        <!--<activity android:name=".Activity.BaseNonGameActivity" />-->
+        <!--<activity android:name=".Activity.BaseGameActivity" />-->
         <activity android:name=".Activity.HelpActivity"
             android:launchMode="singleTask"></activity>
     </application>

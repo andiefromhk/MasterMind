@@ -24,15 +24,13 @@ public class MenuActivity extends BaseActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.start_btn:
-                    i = new Intent(getApplicationContext(), GameActivity.class);
-                    startActivity(i);
+                    startActivity(new Intent(getApplicationContext(), GameActivity.class));
                     break;
                 case R.id.rank_btn:
 
                     break;
                 case R.id.set_btn:
-                    i = new Intent(getApplicationContext(), SettingActivity.class);
-                    startActivity(i);
+                    startActivity(new Intent(getApplicationContext(),SettingActivity.class));
                     break;
                 default:
                     break;

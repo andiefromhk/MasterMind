@@ -11,12 +11,14 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.andie.mastermind.ActionBar.NonGameActionBar;
+import com.example.andie.mastermind.Manager.GameManager;
+import com.example.andie.mastermind.UIComponents.UIComponents.ActionBar.NonGameActionBar;
 import com.example.andie.mastermind.R;
 
 
 public class SettingActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     int setting_num_pin, setting_num_color, setting_num_attempt;
+    GameManager gm;
     EditText txtPlayerName;
     RadioGroup radioGpNumPin;
     Spinner spinner_num_color, spinner_num_attempt;
@@ -33,6 +35,9 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemS
     }
 
     private void initSettingActivity() {
+
+        gm = GameManager.getInstance();
+        gm.init(this);
 
         NonGameActionBar actionBar = new NonGameActionBar(SettingActivity.this, btn_handler_actionbar);
 
@@ -88,14 +93,13 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemS
     };
 
     private void refreshSettingActivity(){
-        txtPlayerName.setText(mmc.currentPlayerName());
+        txtPlayerName.setText(gm.getPlayerGame());
 
-        int num_pin = mmc.currentSettingNumPin();
-        int num_pin_btn_id = get_num_pin_btn_id(num_pin);
+        int num_pin_btn_id = get_num_pin_btn_id(gm.getNumPin());
         radioGpNumPin.check(num_pin_btn_id);
 
-        int numColorPos = numColorAdapter.getPosition(Integer.toString(mmc.currentSettingNumColor()));
-        int numAttemptPos = numAttemptAdapter.getPosition(Integer.toString(mmc.currentAttempt()));
+        int numColorPos = numColorAdapter.getPosition(Integer.toString(gm.getNumColor()));
+        int numAttemptPos = numAttemptAdapter.getPosition(Integer.toString(gm.getNumAttemptSetting()));
 
         spinner_num_color.setSelection(numColorPos);
         spinner_num_attempt.setSelection(numAttemptPos);
@@ -118,14 +122,14 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemS
     }
 
     private void saveSettings() {
-        mmc.saveSettingData(txtPlayerName.getText().toString(),
+        gm.saveSettingData(txtPlayerName.getText().toString(),
                 setting_num_pin, setting_num_color, setting_num_attempt);
-        Toast.makeText(getApplicationContext(), "Your setting is saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Your setting is saved", Toast.LENGTH_SHORT).show();
     }
 
     private void resetSettings() {
-        mmc.saveSettingData("Player",4,5,12);
-        Toast.makeText(getApplicationContext(), "Game setting is reset", Toast.LENGTH_SHORT).show();
+        gm.saveSettingData("MMPlayer",4,5,12);
+        Toast.makeText(getBaseContext(), "Game setting is reset", Toast.LENGTH_SHORT).show();
     }
 
     @Override

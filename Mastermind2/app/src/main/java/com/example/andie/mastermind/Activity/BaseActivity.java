@@ -2,7 +2,6 @@ package com.example.andie.mastermind.Activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,18 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.example.andie.mastermind.Controller.MMController;
 import com.example.andie.mastermind.R;
 
 
 public class BaseActivity extends AppCompatActivity {
-    MMController mmc;
-    Intent i;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mmc = MMController.getInstance(getApplicationContext());
     }
 
     public Button createBtn(View.OnClickListener handler, int id){

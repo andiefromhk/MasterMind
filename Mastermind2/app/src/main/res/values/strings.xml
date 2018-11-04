@@ -24,4 +24,14 @@
         <item>24</item>
         <item>30</item>
     </string-array>
+
+
+    <string name="bingo">BINGO</string>
+    <string name="time_spent">Time Spent: </string>
+    <string name="num_attempt">Number of attempt : </string>
+    <string name="lose">You lose</string>
+    <string name="ok_to_reset">Click OK to reset game</string>
+    <string name="guess_incomplete">Your guess is not complete!</string>
+    <string name="remain_attempt">Remaining Attempt(s): </string>
+    <string name="sure_quit_game">Are you sure you quit the game?</string>
 </resources>

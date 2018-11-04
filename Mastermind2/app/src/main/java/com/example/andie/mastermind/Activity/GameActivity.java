@@ -1,14 +1,12 @@
 package com.example.andie.mastermind.Activity;
 
-import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,35 +14,32 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.andie.mastermind.ActionBar.GameActionBar;
-import com.example.andie.mastermind.Adapter.AttemptListAdapter;
-import com.example.andie.mastermind.Controller.MMController;
-import com.example.andie.mastermind.Fragment.ColorPickerFragment;
-import com.example.andie.mastermind.Fragment.ColorPickerFragment_4Pins;
-import com.example.andie.mastermind.Fragment.ColorPickerFragment_5Pins;
-import com.example.andie.mastermind.Fragment.ColorPickerFragment_6Pins;
-import com.example.andie.mastermind.Fragment.MMAnsDialogFragment;
-import com.example.andie.mastermind.Fragment.MMAnsDialogHandler;
-import com.example.andie.mastermind.Fragment.MMDialogFragment;
-import com.example.andie.mastermind.Fragment.MMDialogHandler;
-import com.example.andie.mastermind.Fragment.MMHandler;
+import com.example.andie.mastermind.MVPInterface.GameView;
+import com.example.andie.mastermind.Presenter.GamePresenter;
 import com.example.andie.mastermind.Model.Hint;
-import com.example.andie.mastermind.Model.PinList;
+import com.example.andie.mastermind.Model.PinColorList;
 import com.example.andie.mastermind.R;
+import com.example.andie.mastermind.UIComponents.UIComponents.ActionBar.GameActionBar;
+import com.example.andie.mastermind.UIComponents.UIComponents.Adapter.AttemptListAdapter;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.ColorPickerFragment;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.ColorPickerFragment_4Pins;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.ColorPickerFragment_5Pins;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.ColorPickerFragment_6Pins;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.MMAnsDialogFragment;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.MMDialogFragment;
+import com.example.andie.mastermind.UIComponents.UIComponents.Fragments.MMHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class GameActivity extends BaseActivity{
+public class GameActivity extends BaseActivity implements GameView {
 
     ListView listView;
-    ColorPickerFragment fragment=null;
+    ColorPickerFragment colorPickerFragment = null;
     Button btn_guess, btn_play_pause;
-    Handler handler;
-    Runnable gTimeCounter;
     TextView timerTxt, attemptTxt;
-
-    ArrayList<PinList> guessAttemptlist;
-    ArrayList<Hint> hintAttemptlist;
+    GameActionBar actionBar;
+    GamePresenter gamePresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,54 +47,53 @@ public class GameActivity extends BaseActivity{
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_game);
 
-        initGameInterface();
+        gamePresenter = GamePresenter.getInstance();
+        gamePresenter.initGameActivity(this);
     }
 
-    private void initGameInterface() {
-
-        int gNumPin=mmc.currentSettingNumPin();
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        if (fragment==null) {
-            fragment = createColorPickerFragmentInstance(gNumPin);
-            ft.add(R.id.guess_panel, fragment).commit();
-        }
-
-        GameActionBar actionBar = new GameActionBar(GameActivity.this, btn_handler_actionbar);
-
+    public void initGameUI(int gameNumPin, ArrayList<PinColorList> guessList, ArrayList<Hint> hintList) {
         listView = (ListView) findViewById(R.id.pAttemptDisplay);
-        btn_guess = createBtn(btn_handler, R.id.btn_guess);
-        btn_play_pause = createBtn(btn_handler, R.id.btn_play_pause);
 
+        btn_guess = createBtn(new GameButtonClick(), R.id.btn_guess);
+        btn_play_pause = createBtn(new GameButtonClick(), R.id.btn_play_pause);
         btn_guess.setEnabled(false);
         btn_play_pause.setText("Play");
 
         timerTxt = (TextView) findViewById(R.id.gTimer);
         attemptTxt =(TextView) findViewById(R.id.gAttemptRemain);
         attemptTxt.setText("");
-        initTimerHandler();
 
-        guessAttemptlist = new ArrayList<>();
-        hintAttemptlist = new ArrayList<>();
-        AttemptListAdapter pAdapter = new AttemptListAdapter(GameActivity.this);
+        actionBar = new GameActionBar(this, new GameActionBarButtonClick());
 
-        pAdapter.setGameData(gNumPin, guessAttemptlist, hintAttemptlist);
-        listView.setAdapter(pAdapter);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if (colorPickerFragment == null) {
+            colorPickerFragment = createColorPickerFragmentInstance(gameNumPin);
+            ft.add(R.id.guess_panel, colorPickerFragment).commit();
+        }
 
-        pAdapter.notifyDataSetChanged();
+        AttemptListAdapter gAdapter = new AttemptListAdapter(GameActivity.this);
+
+        gAdapter.setGameData(gameNumPin, guessList, hintList);
+        listView.setAdapter(gAdapter);
+
+        gAdapter.notifyDataSetChanged();
     }
 
-    private void initTimerHandler() {
-        handler= new Handler();
+    @Override
+    public void onResume(){
+        super.onResume();
+        gamePresenter.resumeGameActivity(this);
+    }
 
-        gTimeCounter = new Runnable() {
-            @Override
-            public void run() {
-                timerTxt.setText(mmc.timerTxtGenerator());
-                mmc.increment_gTimeSpent(1000);
-                handler.postDelayed(gTimeCounter, 1000);
-            }
-        };
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        gamePresenter.destroyGameActivity();
     }
 
     private ColorPickerFragment createColorPickerFragmentInstance(int num) {
@@ -119,238 +113,136 @@ public class GameActivity extends BaseActivity{
         return instance;
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-
-        if (mmc.gameRunningPaused()){
-            resumeGame();
-        }else initGameInterface();
+    public void updateTimerTxt(String timeStr){
+        timerTxt.setText(timeStr);
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        pauseGame();
+    public void updateListViewSelection(){
+        listView.post(new Runnable(){
+            public void run() {
+                listView.setSelection(listView.getCount() - 1);
+            }});
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        endGame();
+    public void onIncompleteAttempt(){
+        Toast.makeText(getApplicationContext(), "Your guess is not complete!", Toast.LENGTH_SHORT).show();
     }
 
-    View.OnClickListener btn_handler = new View.OnClickListener() {
-        public void onClick(View v) {
-            switch(v.getId()) {
-                case R.id.btn_guess:
-                    gGuessBtnCtrl();
-                    break;
-                case R.id.btn_play_pause:
-                    gPlayPauseBtnCtrl();
-                    break;
-                default:
-            }
-        }
-    };
-
-    private void gGuessBtnCtrl() {
-        if (mmc.gameRunningNotPaused()) {
-            if (!mmc.completeGuessAttempt())
-                Toast.makeText(getApplicationContext(), "The set of your guess is not complete!", Toast.LENGTH_SHORT).show();
-            else{
-                fragment.resetColorPickerBtn();
-                mmc.increment_gAttempt();
-                attemptTxt.setText("Remaining Attempt(s): " + mmc.remainingAttempt());
-
-                if (mmc.checkIfBingo()){
-                    showGameWinDialog();
-                }else if (mmc.reachMaxAttempt()){
-                    showGameLoseDialog();
-                }else{ //game continues
-                    hintAttemptlist.add(mmc.generateCurrentHint());
-                    guessAttemptlist.add(mmc.currentGuess());
-                    listView.post(new Runnable(){
-                        public void run() {
-                            listView.setSelection(listView.getCount() - 1);
-                        }});
-                    mmc.resetGuessAttempt();
-                }
-            }
-        }
+    public void onCompleteAttempt(int remainingAttempt){
+        colorPickerFragment.resetColorPickerBtn();
+        attemptTxt.setText("Remaining Attempt(s): " + remainingAttempt);
     }
 
-    private void gPlayPauseBtnCtrl() {
-
-        if (!mmc.gameRunning()){
-            startGame();
-        }
-        else if (mmc.gameRunningNotPaused()){
-            pauseGame();
-            i = new Intent(getApplicationContext(), HelpActivity.class);
-            startActivity(i);
-        }
-        else if (mmc.gameRunningPaused()){
-            resumeGame();
-        }
-    }
-
-    private void showGameWinDialog() {
-        pauseGame();
-
-        String timeSpent = "Time Spent: "+ mmc.timerTxtGenerator();
-        String numAttempt = "Number of Attempt: "+ mmc.currentAttempt();
-        showDialog("Bingo",
-                timeSpent + "\n" + numAttempt +"\n" +
-                        "Click OK to reset the game.", ansDialogHandler);
-    }
-
-    private void showGameLoseDialog() {
-        pauseGame();
-        showDialog("You Lose", "Click OK to reset the game.", ansDialogHandler);
-    }
-
-    private void startGame() {
-        mmc.gameStart();
-        fragment.colorPickerEnabled(true);
+    public void onStartGame() {
+        colorPickerFragment.colorPickerEnabled(true);
         btn_guess.setEnabled(true);
         btn_play_pause.setText("Pause");
-        handler.post(gTimeCounter);
     }
 
-    private void pauseGame() {
-        mmc.gamePause();
-        fragment.colorPickerEnabled(false);
+    public void onPauseGame() {
+        colorPickerFragment.colorPickerEnabled(false);
         btn_guess.setEnabled(false);
-        handler.removeCallbacks(gTimeCounter);
-
-        if (mmc.gameRunning())
-            btn_play_pause.setText("Resume");
+        btn_play_pause.setText("Resume");
     }
 
-    private void resumeGame() {
-        mmc.gameResume();
-        fragment.colorPickerEnabled(true);
+    public void onResumeGame() {
+        colorPickerFragment.colorPickerEnabled(true);
         btn_guess.setEnabled(true);
         btn_play_pause.setText("Pause");
-
-        handler.post(gTimeCounter);
     }
 
-    private void endGame() {
-        mmc.gameEnd();
-        fragment.colorPickerEnabled(false);
+    public void onEndGame() {
+        colorPickerFragment.colorPickerEnabled(false);
         btn_play_pause.setText("Play");
         timerTxt.setText("00:00");
-
-        handler.removeCallbacks(gTimeCounter);
     }
 
-    View.OnClickListener btn_handler_actionbar = new View.OnClickListener() {
-        public void onClick(View v) {
+    public void goToActivity(Class<? extends Activity> activity){
+        startActivity(new Intent(getApplicationContext(), activity));
+    }
+    public void showGameWinDialog(String timeSpent, int numAttempt, PinColorList ans, MMHandler handler) {
 
-            if (mmc==null)
-                mmc=MMController.getInstance(getApplicationContext());
+        String title = getString(R.string.bingo);
+        String msgTimeSpent = getString((R.string.time_spent)) + timeSpent;
+        String msgNumAttempt = getString(R.string.num_attempt) + numAttempt;
+        String msg = String.format("%s \n %s", msgTimeSpent, msgNumAttempt);
 
-            switch(v.getId()) {
-
-                case R.id.action_bar_home_game:
-                    pauseGame();
-                    showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler);
-                    break;
-                case R.id.action_bar_help_game:
-                    if (mmc.gameRunningNotPaused())
-                        mmc.gamePause();
-                    i = new Intent(getApplicationContext(), HelpActivity.class);
-                    startActivity(i);
-                    break;
-                case R.id.action_bar_giveup:
-                    if (mmc.gameRunningNotPaused()) {
-                        pauseGame();
-                        showDialog("Are you sure you give up?", "Click OK to see the answer.", giveUpHandler);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    };
-
-    private void back_to_Menu() {
-        endGame();
-        i = new Intent(getApplicationContext(), MenuActivity.class);
-        startActivity(i);
+        showDialogWithAns(ans, title, msg, handler, "gameWinDialog");
     }
 
-    private void showDialog(String title, String msg, MMHandler handler){
+    public void showGameLoseDialog(PinColorList ans, MMHandler handler) {
+
+        String title = getString(R.string.lose);
+        String msg = getString(R.string.ok_to_reset);
+
+        showDialogWithAns(ans, title, msg, handler, "gameLoseDialog");
+    }
+
+    private void showDialogWithAns(PinColorList ans, String title, String msg, MMHandler handler, String tag){
+        MMAnsDialogFragment dialog = MMAnsDialogFragment.getNewInstance(ans, title, msg, handler);
         FragmentTransaction ft = getFragmentTransaction();
+        dialog.setCancelable(false);
+        dialog.show(ft, tag);
+    }
 
-        DialogFragment dialogFragment;
-        if (handler instanceof MMAnsDialogHandler) {
-            dialogFragment = MMAnsDialogFragment.getNewInstance(mmc.currentAns(), title, msg, (MMAnsDialogHandler) handler);
-            dialogFragment.setCancelable(false);
-        }else {
-            dialogFragment = MMDialogFragment.getNewInstance(title, msg, (MMDialogHandler) handler);
-            dialogFragment.setCancelable(true);
-        }
-        dialogFragment.show(ft, "dialog");
+    public void showQuitGameDialog(MMHandler handler){
+        MMDialogFragment dialog = MMDialogFragment.getNewInstance("Are you sure to quit the game?", "Click OK to quit.", handler);
+        dialog.setCancelable(false);
+        dialog.show(getFragmentTransaction(), "quitGameDialog");
     }
 
     @NonNull
-    private FragmentTransaction getFragmentTransaction() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-        if (prev != null){
-            ft.remove(prev);
+    private FragmentTransaction getFragmentTransaction(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        List<Fragment> prevFragments = fm.getFragments();
+        if ((prevFragments != null) && (!prevFragments.isEmpty())){
+            for (Fragment fragment : prevFragments) {
+                ft.remove(fragment);
+            }
         }
         ft.addToBackStack(null);
         return ft;
     }
 
-    MMAnsDialogHandler ansDialogHandler = new MMAnsDialogHandler() {
-        @Override
-        public void MMAnsClickOk() {
-            endGame();
-            initGameInterface();
-        }
-    };
-    MMDialogHandler bkHomeHandler = new MMDialogHandler() {
-        @Override
-        public void MMDialogClickOk() {
-            back_to_Menu();
-        }
-
-        @Override
-        public void MMDialogClickCancel() {
-            if (mmc.gameRunningPaused())
-                resumeGame();
-        }
-    };
-
-    MMDialogHandler giveUpHandler = new MMDialogHandler() {
-        @Override
-        public void MMDialogClickOk() {
-            showDialog("You gave up", "Click OK to reset the game.", ansDialogHandler);
-        }
-
-        @Override
-        public void MMDialogClickCancel() {
-            if (mmc.gameRunningPaused())
-                resumeGame();
-        }
-    };
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            if (mmc.gameRunningNotPaused())
-                pauseGame();
-
-            showDialog("Are you sure you quit the game?", "Click OK to quit the game.", bkHomeHandler);
+            gamePresenter.keyBackCtrl();
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    class GameActionBarButtonClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()) {
+                case R.id.action_bar_home_game:
+                    gamePresenter.actionHomeCtrl();
+                    break;
+                case R.id.action_bar_help_game:
+                    gamePresenter.actionHelpCtrl();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    class GameButtonClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()) {
+                case R.id.btn_guess:
+                    gamePresenter.guessBtnCtrl();
+                    break;
+                case R.id.btn_play_pause:
+                    gamePresenter.playPauseBtnCtrl();
+                    break;
+                default:
+            }
+        }
     }
 
 }
